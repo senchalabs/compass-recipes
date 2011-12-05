@@ -11,7 +11,7 @@
     display: block;
 
     @if ($width != auto) {
-        width: $width; // default 0 is for ff3 positionning
+        width: $width; // Default 0 is for FF3 positioning
     }
     
     @if ($height != auto)
