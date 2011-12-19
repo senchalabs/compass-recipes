@@ -44,11 +44,11 @@
 
         // Default gradients
         @else if $type == bevel {
-            @include background-image(bevel-gradient($bg-color, $direction, $contrast: 1));
+            @include background-image(bevel-gradient($bg-color, $direction, $contrast));
         } @else if $type == glossy {
             @include background-image(glossy-gradient($bg-color, $direction, $contrast));
         } @else if $type == recessed {
-            @include background-image(recessed-gradient($bg-color, $direction, $contrast: 1));
+            @include background-image(recessed-gradient($bg-color, $direction, $contrast));
         } @else if $type == linear {
             @include background-image(linear-gradient($direction, color_stops(lighten($bg-color, 5%), darken($bg-color, 10%))));
         } @else if $type == matte {
