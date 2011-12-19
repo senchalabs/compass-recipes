@@ -20,10 +20,10 @@ $base-color: #222 !default;
     $dot-size: 2px
 ) {
     @include background-image(
-        radial-gradient($dot-color $dot-size, rgba(darken($dot-color, 5), 0) $dot-size + 1),
-        radial-gradient($dot-color $dot-size, rgba(darken($dot-color, 5), 0) $dot-size + 1),
-        radial-gradient($highlight-color $dot-size, rgba(#fff, 0) $dot-size + 1px),
-        radial-gradient($highlight-color $dot-size, rgba(#fff, 0) $dot-size + 1px)
+        radial-gradient($dot-color $dot-size, rgba(darken($dot-color, 5), 0) $dot-size),
+        radial-gradient($dot-color $dot-size, rgba(darken($dot-color, 5), 0) $dot-size),
+        radial-gradient($highlight-color $dot-size, rgba(#fff, 0) $dot-size),
+        radial-gradient($highlight-color $dot-size, rgba(#fff, 0) $dot-size)
     );
 
     background-repeat: repeat;
