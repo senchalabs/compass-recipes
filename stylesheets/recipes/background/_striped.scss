@@ -18,6 +18,7 @@
 ) {
     background-color: $bgcolor;
     @include background-image(
-        repeating-linear-gradient($angle, transparent, transparent $minorsize, $stripe-color $minorsize, $stripe-color $majorsize)
-    )
+        linear-gradient($angle, rgba($stripe-color, 0), rgba($stripe-color, 0) $minorsize, $stripe-color $minorsize, $stripe-color $majorsize)
+    );
+    background-size: $majorsize;
 }
