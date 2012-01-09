@@ -32,7 +32,7 @@
 
 @import "compass/css3/images";
 
-@mixin background-gradient($bg-color, $type: null, $direction: top) {
+@mixin background-gradient($bg-color, $type: null, $direction: top, $contrast: 1) {
     background-image: none;
     background-color: $bg-color;
 
@@ -44,11 +44,11 @@
 
         // Default gradients
         @else if $type == bevel {
-            @include background-image(bevel-gradient($bg-color, $direction));
+            @include background-image(bevel-gradient($bg-color, $direction, $contrast));
         } @else if $type == glossy {
-            @include background-image(glossy-gradient($bg-color, $direction));
+            @include background-image(glossy-gradient($bg-color, $direction, $contrast));
         } @else if $type == recessed {
-            @include background-image(recessed-gradient($bg-color, $direction));
+            @include background-image(recessed-gradient($bg-color, $direction, $contrast));
         } @else if $type == linear {
             @include background-image(linear-gradient($direction, color_stops(lighten($bg-color, 5%), darken($bg-color, 10%))));
         } @else if $type == matte {
@@ -59,7 +59,7 @@
 
 // These are functions so they can be combined together with background-image()// ie. @include background-image(background_noise(), glossy-gradient());
 
-@function bevel-gradient($bg-color: $base-color, $direction: top) {
+@function bevel-gradient($bg-color: $base-color, $direction: top, $contrast: 1) {
     @return linear-gradient($direction, color_stops(
         lighten($bg-color, 15%), 
         lighten($bg-color, 8%) 30%, 
@@ -68,14 +68,14 @@
     ));
 }
 
-@function glossy-gradient($bg-color: $base-color, $direction: top) {
-    @return linear-gradient($direction, color_stops(lighten($bg-color, 15%), lighten($bg-color, 5%) 50%, $bg-color 51%, darken($bg-color, 5%)));
+@function glossy-gradient($bg-color: $base-color, $direction: top, $contrast: 1) {
+    @return linear-gradient($direction, color_stops(lighten($bg-color, 15% * $contrast), lighten($bg-color, 5% * $contrast) 50%, $bg-color 51%, darken($bg-color, 5% * $contrast)));
 }
 
-@function recessed-gradient($bg-color: $base-color, $direction: top) {
+@function recessed-gradient($bg-color: $base-color, $direction: top, $contrast: 1) {
     @return linear-gradient($direction, color_stops(darken($bg-color, 10%), darken($bg-color, 5%) 10%, $bg-color 65%, lighten($bg-color, .5%)));
 }
 
-@function matte-gradient($bg-color: $base-color, $direction: top) {
+@function matte-gradient($bg-color: $base-color, $direction: top, $contrast: 1) {
     @return linear-gradient($direction, color_stops(lighten($bg-color, 15%), lighten($bg-color, 5%) 3%, darken($bg-color, 5%)));
 }
