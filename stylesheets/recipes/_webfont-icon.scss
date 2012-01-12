@@ -135,25 +135,41 @@ $webfont-icon-default-gradient: matte !default;
     $gradient-active: recessed,
 
     $include-states: true,
-    $hidetext: true
+    $hide-text: true,
+    $text-align: right,
+    $text-spacing: 4px
 ) {
     @include background-clip(text);
     overflow: visible;
     position: relative;
-    height: $size;
     display: inline-block;
     line-height: $size;
-    text-indent: -9000px;
-    width: $size;
+
+    @if $hide-text == true {
+        text-indent: -9000px;  
+        width: $size;
+        height: $size;
+    } @else {
+        @if $text-align == right {
+            padding-left: $size + $text-spacing;
+        } @else {
+            padding-right: $size + $text-spacing;
+        }
+    }
 
     @if $stroke {
         -webkit-text-stroke: if($stroke == true, darken($color, 10), $stroke);
     }
     &:after, &:before {
         @extend .webfont-icon-#{$class};
+
+        @if ($hide-text != true and $text-align == left) {
+            left: auto;
+            right: 0;
+        }
+
         font-size: $size;
         content: $character;
-
         
         @include background-gradient($color, $gradient);
     }
@@ -168,6 +184,7 @@ $webfont-icon-default-gradient: matte !default;
             @if $stroke-hover and $stroke {
                 -webkit-text-stroke: $stroke-hover;
             }
+            color: $color-hover;
 
             &:before {
                 @include text-shadow($shadow, $glow-hover);
@@ -180,6 +197,7 @@ $webfont-icon-default-gradient: matte !default;
             @if $stroke-active and $stroke {
                 -webkit-text-stroke: $stroke-active;
             }
+            color: $color-active;
             &:before {
                 @include text-shadow($shadow, $glow-active);
             }
