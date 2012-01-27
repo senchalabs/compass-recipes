@@ -135,7 +135,7 @@
     }
 }
 
-@mixin color-by-background($bg-color, $contrast: $default-text-contrast, $default-color: false, $inset-text: true) {
+@mixin color-by-background($bg-color, $contrast: $default-text-contrast, $default-color: false, $inset-text: false) {
     @if $default-color {
         color: color-by-background(hsla(hue($default-color), saturation($default-color), lightness($bg-color), opacity($bg-color)), $contrast);
     } @else {
@@ -165,7 +165,7 @@
     $a: opacity($color);
 }
 
-@debug hsv(rgba(#3E87E3, .5));
+// @debug hsv(rgba(#3E87E3, .5));
 
 @function brighten($color, $amount) {
     $current_brightness: brightness($color);
