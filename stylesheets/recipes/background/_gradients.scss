@@ -32,7 +32,9 @@
 
 @import "compass/css3/images";
 
-@mixin background-gradient($bg-color, $type: null, $direction: top, $contrast: 1) {
+$default-gradient: matte !default;
+
+@mixin background-gradient($bg-color, $type: $default-gradient, $direction: top, $contrast: 1) {
     background-image: none;
     background-color: $bg-color;
 
@@ -52,7 +54,7 @@
         } @else if $type == linear {
             @include background-image(linear-gradient($direction, color_stops(lighten($bg-color, 5%), darken($bg-color, 10%))));
         } @else if $type == matte {
-            @include background-image(matte-gradient($bg-color, $direction));
+            @include background-image(matte-gradient($bg-color, $direction, $contrast));
         }
     }
 }
@@ -73,9 +75,20 @@
 }
 
 @function recessed-gradient($bg-color: $base-color, $direction: top, $contrast: 1) {
-    @return linear-gradient($direction, color_stops(darken($bg-color, 10%), darken($bg-color, 5%) 10%, $bg-color 65%, lighten($bg-color, .5%)));
+    @return linear-gradient($direction, color_stops(darken($bg-color, 10% * $contrast), darken($bg-color, 5% * $contrast) 10%, $bg-color 65%, lighten($bg-color, .5% * $contrast)));
 }
 
-@function matte-gradient($bg-color: $base-color, $direction: top, $contrast: 1) {
-    @return linear-gradient($direction, color_stops(lighten($bg-color, 15%), lighten($bg-color, 5%) 3%, darken($bg-color, 5%)));
+@function matte-gradient (
+    $bg-color: $base-color,
+    $direction: top,
+    $contrast: 1
+) {
+    @return linear-gradient(
+        $direction,
+        color_stops(
+            lighten($bg-color, 15% * $contrast),
+            lighten($bg-color, 5% * $contrast) 3%,
+            darken($bg-color, 5% * $contrast)
+        )
+    );
 }
