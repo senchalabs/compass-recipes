@@ -4,8 +4,7 @@ $cutout-blur: 5px !default;
 @mixin cutout(
     $size: 5px,
     $blur: 5px
-)
-{
+) {
     @include box-shadow(cutout($size, $blur))
 }
 
