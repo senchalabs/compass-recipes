@@ -17,13 +17,13 @@ $base-color: #222 !default;
     $dot-color: scale-lightness($background-color, -50),
     $highlight-color: rgba(#fff, .1),
     $spacing-size: 16px,
-    $dot-size: 2px
+    $dot-size: 12.5%
 ) {
     @include background-image(
-        radial-gradient($dot-color $dot-size, rgba(darken($dot-color, 5), 0) $dot-size + 1),
-        radial-gradient($dot-color $dot-size, rgba(darken($dot-color, 5), 0) $dot-size + 1),
-        radial-gradient($highlight-color $dot-size, rgba(#fff, 0) $dot-size + 1px),
-        radial-gradient($highlight-color $dot-size, rgba(#fff, 0) $dot-size + 1px)
+        radial-gradient($dot-color $dot-size, rgba(darken($dot-color, 5), 0) $dot-size),
+        radial-gradient($dot-color $dot-size, rgba(darken($dot-color, 5), 0) $dot-size),
+        radial-gradient($highlight-color $dot-size, rgba(#fff, 0) $dot-size),
+        radial-gradient($highlight-color $dot-size, rgba(#fff, 0) $dot-size)
     );
 
     background-repeat: repeat;

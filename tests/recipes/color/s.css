@@ -32,11 +32,9 @@ h2 {
 
 /**
  *
+ * @class Color
  * @author David Kaneda - http://www.davidkaneda.com
  *
- */
-/**
- * @class Color
  */
 /**
  * Returns the brightness (out of 100) of a specified color.
@@ -46,8 +44,12 @@ h2 {
  */
 /**
  * Returns the luminosity for a specified color
- * @todo explain why this is useful
  * @param {color} The color to check
+ * @return {measurement}
+ */
+/**
+ * Returns the contrast ratio between two colors
+ * @param {color1} The color to check
  * @return {measurement}
  */
 .swatch, .swatch1, .swatch2, .swatch3, .swatch4 {

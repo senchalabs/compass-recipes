@@ -1,11 +1,8 @@
 /**
  *
+ * @class Color
  * @author David Kaneda - http://www.davidkaneda.com
  *
- */
-
-/**
- * @class Color
  */
 
 /**
@@ -20,6 +17,7 @@
     $b: blue($color) / 255 * 100;
 
     $brightness: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+
     @return $brightness;
 }
 
@@ -39,7 +37,6 @@
 
 /**
  * Returns the luminosity for a specified color
- * @todo explain why this is useful
  * @param {color} The color to check
  * @return {measurement}
  */
@@ -47,13 +44,19 @@
     $r: color-luminance(red($color) / 255);
     $g: color-luminance(green($color) / 255);
     $b: color-luminance(blue($color) / 255);
-
-    @return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+    $l: 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+    @debug 'luminosity for ' + $color + ' is ' + $l;
+    @return $l;
 }
 
-@function contrast-ratio($c1, $c2) {
-    $l1: luminosity($c1);
-    $l2: luminosity($c2);
+/**
+ * Returns the contrast ratio between two colors
+ * @param {color1} The color to check
+ * @return {measurement}
+ */
+@function contrast-ratio($color1, $color2) {
+    $l1: luminosity($color1);
+    $l2: luminosity($color2);
 
     @if $l2 > $l1 {
         @return $l2 / $l1;
@@ -63,7 +66,7 @@
 }
 
 @function get-color-mode($color) {
-    @if brightness($color) > 50 {
+    @if brightness($color) > 55 {
         @return light;
     } @else {
         @return dark;
@@ -132,7 +135,7 @@
     }
 }
 
-@mixin color-by-background($bg-color, $contrast: $default-text-contrast, $default-color: false, $inset-text: true) {
+@mixin color-by-background($bg-color, $contrast: $default-text-contrast, $default-color: false, $inset-text: false) {
     @if $default-color {
         color: color-by-background(hsla(hue($default-color), saturation($default-color), lightness($bg-color), opacity($bg-color)), $contrast);
     } @else {
@@ -153,6 +156,19 @@
     }
     
     @include text-shadow(color-offset($bg-color, $contrast, $mode: get-color-mode($bg-color)) 0 $offset 0);
+}
+
+@function hsv-to-rgb($color) {
+    $r: red($color) / 255;
+    $g: green($color) / 255;
+    $b: blue($color) / 255;
+    $a: opacity($color);
+}
+
+// @debug hsv(rgba(#3E87E3, .5));
+
+@function brighten($color, $amount) {
+    $current_brightness: brightness($color);
 }
 
 $base-color: blue !default;
