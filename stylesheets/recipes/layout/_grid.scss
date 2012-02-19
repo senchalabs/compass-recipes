@@ -86,7 +86,7 @@ $support-block-grid-nth-child: true !default;
       @extend .column;
     }
 
-    // We don't need eg. "offset-by-12"
+    // We don't need "offset-by-12"
     @if $i < $columns {
       .offset-by-#{$i} {
         margin-left: $single * $i + $gutter * ($i + 1);
@@ -106,7 +106,6 @@ $support-block-grid-nth-child: true !default;
     }
 
     $flex-gutter: ($gutter * ($i - 1)) / $i;
-    @debug $flex-gutter;
     .grid-#{$i} {
       @extend .grid;
       margin-left: - $flex-gutter;
@@ -175,11 +174,12 @@ img {
     margin-left: 0;
   }
   .no-left {
-    left: none;
+    left: 0;
   }
   .no-right {
-    right: none;
+    right: 0;
   }
+
   @for $i from 1 through $grid-columns {
     .offset-by-#{$i}, .offset-by-#{$i}:first-child {
       @extend .no-margin-left;
