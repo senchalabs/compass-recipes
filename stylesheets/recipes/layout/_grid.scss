@@ -69,6 +69,7 @@ $support-block-grid-nth-child: true !default;
       max-width: $grid-max-width;
       min-width: $grid-min-width;
       margin: 0 auto;
+      @include box-sizing(border-box);
 
       .row {
         min-width: 0;
