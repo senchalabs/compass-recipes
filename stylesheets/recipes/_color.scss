@@ -135,6 +135,21 @@
     }
 }
 
+/**
+ * Colors the text of an element based on lightness of its background.
+ *
+ *     .my-element {
+ *       @include color-by-background(#fff); // Colors text black.
+ *     }
+ *
+ *     .my-element {
+ *       @include color-by-background(#fff, 40%); // Colors text gray.
+ *     }
+ *
+ * @param {color} $bg-color Background color of element.
+ * @param {percent} $contrast Contrast of text color to its background.
+ *
+ */
 @mixin color-by-background($bg-color, $contrast: $default-text-contrast, $default-color: false, $inset-text: false) {
     @if $default-color {
         color: color-by-background(hsla(hue($default-color), saturation($default-color), lightness($bg-color), opacity($bg-color)), $contrast);
