@@ -13,7 +13,8 @@
 @mixin effect-glass(
     $color: #fff,
     $reflectDegree: -45deg,
-    $border-radius: 4px
+    $border-radius: 0,
+    $include-highlight: true
 )
 {
     position: relative;
@@ -29,10 +30,14 @@
         left: 0;
         border: transparent solid 1px;
         @include border-radius($border-radius);
-        @include box-shadow(
-            inset $color 0 0 2px,
-            inset rgba($color,.4) 0 5px 10px
-        );
+
+        @if $include-highlight {
+            @include box-shadow(
+                inset rgba($color, .2) 0 0 1px,
+                inset rgba($color, .1) 0 5px 10px
+            );
+        }
+
         @include background(
             linear-gradient($reflectDegree, rgba($color,.12) 50%, rgba($color, 0) 50.5% ));
     }
