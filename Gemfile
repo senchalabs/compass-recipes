@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "bundle"
+gem "bundler"
 gem "rake"
 gem "compass"
 gem "git"
